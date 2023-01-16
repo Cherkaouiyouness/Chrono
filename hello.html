@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1 class="Timer">00 : 00 : 00</h1>
+            <div class="btn"></div>
+            <button class="start" id="start">Start</button>
+            <button id="stop">Stop</button>
+            <button id="reset">Reset</button>
+        </div>
+    </header>
+    
+</body>
+
+
+
+
+
+<script>
+
+
+let start = document.getElementById("start")
+    let stop = document.getElementById("stop")
+    let reset = document.getElementById("reset")
+    let timer = document.querySelector('.Timer');
+    let s = 0
+    let m = 0
+    let h = 0
+    let t
+
+   function Chrono(){
+    s += 1
+    
+    if ( s > 59 ){
+        s = 0
+        m += 1
+    
+        if ( m >59){
+            m = 0
+            h += 1
+            }
+        }
+
+    let heures = h
+    let minutes = m
+    let secondes = s
+
+    if ( heures < 10){
+        heures = "0" + heures
+        }
+    if ( minutes < 10){ 
+    minutes = "0" + minutes
+          }
+    if ( secondes < 10){
+    secondes = "0" + secondes
+          }
+
+    timer.innerHTML = heures + " : " + minutes + " : " + secondes 
+
+    }
+
+    start.onclick = function() {
+    t = setInterval(Chrono, 1000)
+    start.disabled = true
+    }
+
+   stop.onclick =function() {
+    clearInterval(t)
+    start.disabled = false
+
+    }
+   reset.onclick =function() {
+    s=0
+    m =0
+    h =0
+    timer.innerHTML = "00 : 00 : 00"
+    clearInterval(t)
+    start.disabled = false
+
+    }
+
+
+
+
+
+</script>
+</html>
